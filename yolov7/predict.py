@@ -18,13 +18,16 @@ def get_test(path):
     file=txt+".txt"
     if (file in exist):
         return
-    
-    
-   
-    
-        
-    for img in video:
-        img=os.path.join(path, img)          
+
+    for i in range(len(video)-1):
+        name=i+1
+        img = os.path.join(path, f"{name:06d}.jpg")
+        print(img)
+
+
+
+        img=os.path.join(path, img)
+
         try:
             image = Image.open(img)
         except:
@@ -32,18 +35,44 @@ def get_test(path):
             continue
         else:
             is_exist,x,y,w,h = yolo.detect_image(image)
-            if is_exist :                
-                x=int(x)
-                y=int(y)
-                w=int(w)
-                h=int(h)
-                          
+            x=int(x)
+            y=int(y)
+            w=int(w)
+            h=int(h)
+            if is_exist :
                 data["res"].append([x,y,w,h])
             else :
                 data["res"].append([])
 
-    with open(result_path+"/"+file, "w") as f:                
+
+    with open(result_path+"/"+file, "w") as f:
         f.write(json.dumps(data))
+
+
+
+
+    # for img in video:
+    #     img=os.path.join(path, img)
+    #     print(img)
+    #     try:
+    #         image = Image.open(img)
+    #     except:
+    #         print('Open Error! Try again!')
+    #         continue
+    #     else:
+    #         is_exist,x,y,w,h = yolo.detect_image(image)
+    #         if is_exist :
+    #             x=int(x)
+    #             y=int(y)
+    #             w=int(w)
+    #             h=int(h)
+    #
+    #             data["res"].append([x,y,w,h])
+    #         else :
+    #             data["res"].append([])
+
+    # with open(result_path+"/"+file, "w") as f:
+    #     f.write(json.dumps(data))
    
    
 

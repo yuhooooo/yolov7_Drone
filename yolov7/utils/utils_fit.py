@@ -5,12 +5,7 @@ from tqdm import tqdm
 
 from utils.utils import get_lr
 
-# def save_model(model_train, model, ema, save_dir, local_rank=0):     
-#   if ema:
-#     save_state_dict = ema.ema.state_dict()
-#   else:
-#     save_state_dict = model.state_dict()       
-#   torch.save(save_state_dict, os.path.join(save_dir, "last_epoch_weights.pth"))
+
  
 
 
@@ -28,10 +23,7 @@ def fit_one_epoch(model_train, model, ema, yolo_loss, loss_history, eval_callbac
     for iteration, batch in enumerate(gen):
         if iteration >= epoch_step:
             break
-        # if (iteration+1) % 1200 == 0:
-        #     torch.save(model, os.path.join(save_dir, "model.pth"))        
-        #     torch.save(model_train, os.path.join(save_dir, "model_train.pth"))
-        #     save_model(model_train, model, ema, save_dir, local_rank)
+      
   
 
         images, targets = batch[0], batch[1]
